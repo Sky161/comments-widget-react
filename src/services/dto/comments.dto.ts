@@ -1,15 +1,15 @@
 import * as t from "io-ts";
 import { recursion } from "io-ts";
 
-export interface Comment {
+export interface CommentDTO {
 	readonly author: string;
 	readonly message: string;
-	readonly comments: Comment[];
+	readonly comments: CommentDTO[];
 }
 
-export type Comments = Comment[];
+export type CommentsDTO = CommentDTO[];
 
-const commentDTO = recursion<Comment, Comment>("commentDTO", (commentIO) =>
+const commentDTO = recursion<CommentDTO, CommentDTO>("commentDTO", (commentIO) =>
 	t.strict({
 		author: t.string,
 		message: t.string,
@@ -17,4 +17,4 @@ const commentDTO = recursion<Comment, Comment>("commentDTO", (commentIO) =>
 	})
 );
 
-export const commentsArrayDTO: t.Type<Comments, unknown> = t.array(commentDTO, "commentsArrayDTO");
+export const commentsArrayDTO: t.Type<CommentsDTO, unknown> = t.array(commentDTO, "commentsArrayDTO");

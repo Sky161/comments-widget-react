@@ -1,23 +1,25 @@
-import { memo, useCallback } from "react";
-import { RemoteData } from "@devexperts/remote-data-ts";
+import { memo } from "react";
 import { Comments } from "./comments.model";
-import { RenderRemoteData } from "../ui-kit/components/render-remote-data.component";
+import { pipe } from "fp-ts/pipeable";
+import { CommentContainer } from "../comment/comment.container";
+import { reader } from "fp-ts";
 
 export interface CommentsComponentProps {
-	readonly comments: RemoteData<Error, Comments>;
+	readonly comments: Comments;
 }
 
-export const CommentsComponent = memo((props: CommentsComponentProps) => {
-	const { comments } = props;
-	const renderSuccess = useCallback(
-		(data: Comments) => (
-			<div>
-				{data.map((item, idx) => (
-					<div key={`comment_${idx}`}>{item.message}</div>
-				))}
-			</div>
-		),
-		[]
-	);
-	return <RenderRemoteData data={comments} success={renderSuccess} />;
-});
+export const CommentsComponent = pipe(
+	CommentContainer,
+	reader.map((CommentContainer) =>
+		memo((props: CommentsComponentProps) => {
+			const { comments } = props;
+			return (
+				<div>
+					{comments.map((comment) => (
+						<CommentContainer comment={comment} key={comment.id} nested={false} />
+					))}
+				</div>
+			);
+		})
+	)
+);
