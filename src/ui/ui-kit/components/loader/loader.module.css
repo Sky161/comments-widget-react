@@ -1,0 +1,34 @@
+.loader_container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+}
+
+.loader {
+	width: 75px;
+	height: 75px;
+	margin: 0;
+	background: transparent;
+	border-top: 4px solid #000;
+	border-right: 4px solid transparent;
+	border-radius: 50%;
+	animation-duration: 1s;
+	animation-name: spin;
+	animation-iteration-count: infinite;
+	animation-timing-function: linear;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+}
+
+@keyframes spin {
+	from {
+		-webkit-transform: rotate(0deg);
+		transform: rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		transform: rotate(360deg);
+	}
+}

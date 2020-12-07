@@ -1,6 +1,7 @@
 import { memo } from "react";
 import { fold, RemoteData } from "@devexperts/remote-data-ts";
 import { pipe } from "fp-ts/pipeable";
+import { LoaderComponent } from "../loader/loader.component";
 
 export interface RenderRemoteDataProps<E, A> {
 	readonly data: RemoteData<E, A>;
@@ -12,8 +13,8 @@ const Component = <E, A>(props: RenderRemoteDataProps<E, A>) => {
 	return pipe(
 		data,
 		fold(
-			() => <>loading</>,
-			() => <>loading</>,
+			() => <LoaderComponent />,
+			() => <LoaderComponent />,
 			() => <>Error</>,
 			success
 		)

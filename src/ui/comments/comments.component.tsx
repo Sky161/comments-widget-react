@@ -14,11 +14,11 @@ export const CommentsComponent = pipe(
 		memo((props: CommentsComponentProps) => {
 			const { comments } = props;
 			return (
-				<div>
+				<>
 					{comments.map((comment) => (
 						<CommentContainer comment={comment} key={comment.id} nested={false} />
 					))}
-				</div>
+				</>
 			);
 		})
 	)

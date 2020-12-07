@@ -1,7 +1,7 @@
 import { memo, useCallback } from "react";
 import { RemoteData } from "@devexperts/remote-data-ts";
 import { Comments } from "../comments/comments.model";
-import { RenderRemoteData } from "../ui-kit/components/render-remote-data.component";
+import { RenderRemoteData } from "../ui-kit/components/render-remote-data/render-remote-data.component";
 import { pipe } from "fp-ts/pipeable";
 import { reader } from "fp-ts";
 import { CommentsComponent } from "../comments/comments.component";
