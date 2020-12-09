@@ -1,7 +1,33 @@
+.container {
+	margin-bottom: 30px;
+	padding-left: 10px;
+	border-left: 3px solid transparent;
+	display: flex;
+	width: fit-content;
+	align-items: center;
+}
 .hovered {
-	font-weight: bold;
+	border-left: 3px solid black;
+	transition: border-left-color 1s ease;
 }
 
 .nested {
+	margin-left: 60px;
+}
+
+.author_img {
+	width: 120px;
+	height: 120px;
+	border-radius: 100%;
+	object-fit: cover;
+}
+
+.author_name {
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.text_block {
 	margin-left: 15px;
+	font-size: 18px;
 }

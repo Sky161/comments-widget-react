@@ -3,6 +3,7 @@ export interface Comment {
 	readonly message: string;
 	readonly id: string;
 	readonly comments: Comment[];
+	readonly imgUrl: string;
 }
 
 export type Comments = Comment[];

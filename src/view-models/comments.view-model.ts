@@ -13,8 +13,9 @@ interface CommentsViewModelContext {
 }
 
 interface Comment extends CommentDTO {
-	id: string;
-	comments: Comment[];
+	readonly id: string;
+	readonly imgUrl: string;
+	readonly comments: Comment[];
 }
 
 export interface CommentsViewModel {
@@ -44,4 +45,5 @@ const patchComment = (value: CommentDTO): Comment => ({
 	...value,
 	id: uuid(),
 	comments: pipe(value.comments, array.map(patchComment)),
+	imgUrl: `https://cataas.com/cat?${value.author}`,
 });
