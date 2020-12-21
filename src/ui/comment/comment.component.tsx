@@ -15,6 +15,14 @@ export interface CommentComponentProps {
 
 export const CommentComponent = memo((props: CommentComponentProps) => {
 	const { comment, hoveredUser, setHover, nested } = props;
+	const cssForContainer = useMemo(
+		() =>
+			cn({
+				[css.nested]: nested,
+			}),
+		[nested]
+	);
+
 	const cssForHovered = useMemo(
 		() =>
 			cn(css.container, {
@@ -22,18 +30,17 @@ export const CommentComponent = memo((props: CommentComponentProps) => {
 					hoveredUser,
 					option.exists((hoveredAuthor) => hoveredAuthor === comment.author)
 				),
-				[css.nested]: nested,
 			}),
-		[hoveredUser, comment, nested]
+		[hoveredUser, comment]
 	);
 
 	const handleMouseEnter = useCallback(() => setHover(option.some(comment.author)), [comment.author, setHover]);
 	const handleMouseLeave = useCallback(() => setHover(option.none), [setHover]);
 
 	return (
-		<>
+		<div className={cssForContainer}>
 			<div className={cssForHovered} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-				<img className={css.author_img} src={comment.imgUrl} />
+				<img className={css.author_img} src={comment.imgUrl} alt={"avatar"} />
 				<div className={css.text_block}>
 					<div className={css.author_name}>{comment.author}</div>
 					<div>{comment.message}</div>
@@ -49,6 +56,6 @@ export const CommentComponent = memo((props: CommentComponentProps) => {
 						nested={true}
 					/>
 				))}
-		</>
+		</div>
 	);
 });

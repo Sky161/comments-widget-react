@@ -6,7 +6,13 @@ export const COMMENTS_MOCK = [
 			{
 				author: "Olga",
 				message: "Hi there",
-				comments: [],
+				comments: [
+					{
+						author: "Nikolay",
+						message: "What's up?!",
+						comments: [],
+					},
+				],
 			},
 			{
 				author: "Nikolay",
